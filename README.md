@@ -1,8 +1,8 @@
 # validity-homework
 
-* Tested on an clean Ubuntu 18.04 image.
+## * Tested on an clean Ubuntu 18.04 image.
 
-Step 0: bootstrap the workspace
+# Step 0: prepare
 
 0.0 - Download the files to a local directory, keeping the relative directory structure intact.
   suggested path: ~/validity-homework
@@ -41,13 +41,13 @@ pilot_inputs = {
 # }
 ```
 
-Step 1: plan
+# Step 1: plan
 
 1.1 - Execute `01_terraform_plan.sh`.  It should run successfully, performing a terraform init and terraform plan, and generating the following files, in the same dir as the script file:
 - `tf.plan`
 - `tf_plan.log`
 
-Step 2: apply
+# Step 2: apply
 
 2.1 - Execute `02_terraform_apply.sh`.  It should run successfully, performing a terraform init and terraform apply, and generating the following files, in the same dir as the script file:
 - `tf_apply.log`
@@ -62,13 +62,13 @@ Step 2: apply
 
 2.3 - (optional) Use the AWS CLI or log in to the AWS web console and inspect the deployed resources.
 
-Step 3: show
+# Step 3: show
 
 3.1 - (optional) Execute `03_terraform_show.sh`.  It should run successfully, performing a terraform init and terraform show, and generating `tf_show.log` in the same dir as the script file.
 
 3.3 - (optional) inspect the `terraform show` output file.
 
-Step 4: destroy
+# Step 4: destroy
 
 4.1 - Execute `03_terraform_show.sh`.  You will be prompted to confirm terraform destroy. It should run successfully, performing a terraform init and terraform show, and generating
 `tf_destroy.log` in the same dir as the script file.
