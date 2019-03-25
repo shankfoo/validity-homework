@@ -1,5 +1,7 @@
 # validity-homework
 
+This set of scripts and TF files can deploy and destroy a sample load-balanced Fargate cluster, driven from a small set of input files.
+
 ## * Tested on an clean Ubuntu 18.04 image.
 
 # Step 0: prepare
@@ -9,7 +11,7 @@
 
 0.1 - Run `00_config_console.sh` to install the required components if needed, which are:  unzip, terraform, python, aws cli.
 
-0.2 - Edit `pilot_secret.tfvars` to contain a valid amazon access key and secret key.
+0.2 - Edit `pilot_secrets.tfvars` to contain a valid access key and secret key.
 ```
 # this is used for backend and provider
 access_key="A******************A"
@@ -29,14 +31,14 @@ pilot_inputs = {
 }
 ```
 
-0.4 - Edit the `./tf/backend_s3.tf` file to specify valid S3 bucket and key path for the S3 backend, OR
-  Delete or replace the `./tf/backend_s3.tf` file to use the local backend or another desired backend.
+0.4 - Edit the `./tf/backend_s3.tf` file to specify a valid S3 bucket and key path for the S3 backend, OR
+ leave the file commented out to use the local `/validity-homework/tf` directory as the backend.
 ```
 # terraform {
 #   backend "s3" {
-#     bucket      = "<some-valid-bucket-name>"
-#     key         = "<some-valid>/<key-path>/terraform.tfstate"
-#     region      = "us-east-2"
+#     bucket      = "<a-valid-bucket-name>"
+#     key         = "<a-valid-key-path>/terraform.tfstate"
+#     region      = "<aws-region-for-the-bucket>"
 #   }
 # }
 ```
@@ -58,7 +60,7 @@ pilot_inputs = {
 
     `I'm 4171eb990bc8 running on linux/amd64`
 
-... with a finite number (3) or different IDs showing up in the responses, one for each available Availablity Zone in `Ireland/eu-west-1` at the time of deployment.  Check the output of `az_count.log` to view the available AZs.
+... with a finite number (3) of different IDs showing up in the responses, one for each available Availablity Zone in `Ireland/eu-west-1` at the time of deployment.  Check the output of `az_count.log` to view the available AZs.
 
 2.3 - (optional) Use the AWS CLI or log in to the AWS web console and inspect the deployed resources.
 
@@ -70,8 +72,16 @@ pilot_inputs = {
 
 # Step 4: destroy
 
-4.1 - Execute `03_terraform_show.sh`.  You will be prompted to confirm terraform destroy. It should run successfully, performing a terraform init and terraform show, and generating
-`tf_destroy.log` in the same dir as the script file.
+4.1 - Execute `03_terraform_show.sh`.  You will be prompted to confirm terraform destroy. It should run successfully, performing a terraform init and terraform destroy, and generating `tf_destroy.log` in the same dir as the script file.
 
 4.2 - (optional) Use the AWS CLI or log in to the AWS web console and confirm resource destruction.
 
+# Step 5: cleanup
+
+It's important not to leave sensitive data around:
+5.1 - Delete the `pilot_secrets.tfvars` 
+5.2 - Delete the `tf.plan`
+5.3 - Delete the generated `.log` files
+5.4 - Delete the contents of the `/tf/.terraform/` directory
+
+Thanks!
