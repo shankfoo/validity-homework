@@ -79,9 +79,14 @@ pilot_inputs = {
 # Step 5: cleanup
 
 It's important not to leave sensitive data around:
+
 5.1 - Delete the `pilot_secrets.tfvars` 
+
 5.2 - Delete the `tf.plan`
+
 5.3 - Delete the generated `.log` files
+
 5.4 - Delete the contents of the `/tf/.terraform/` directory
 
-Thanks!
+
+# Thanks!
