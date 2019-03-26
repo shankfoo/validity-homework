@@ -62,6 +62,8 @@ pilot_inputs = {
 
 ... with a finite number (3) of different IDs showing up in the responses, one for each available Availablity Zone in `Ireland/eu-west-1` at the time of deployment.  Check the output of `az_count.log` to view the available AZs.
 
+_Note:  I noticed that clicking the URL in a browser seemed to exhibit what looked like 'round-robin' behavior with the ALB routing, while running a batch of curl commands from bash would exhibit different behavior that look like weighting/random, which is what I expected. Was it a fluke?_
+
 2.3 - (optional) Use the AWS CLI or log in to the AWS web console and inspect the deployed resources.
 
 # Step 3: show
