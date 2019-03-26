@@ -2,7 +2,7 @@
 
 This set of scripts and TF files can deploy and destroy a sample load-balanced Fargate cluster, driven from a small set of input files.
 
-## * Tested on an clean Ubuntu 18.04 image.
+## * Tested on a clean Ubuntu 18.04 image.
 
 # Step 0: prepare
 
